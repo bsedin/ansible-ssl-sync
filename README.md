@@ -47,4 +47,7 @@ Use role:
     ssl_sync_download: true
   roles:
     - ssl-sync
+  tasks:
+    - name: reload nginx
+      shell: docker kill -s HUP nginx
 ```
