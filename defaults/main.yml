@@ -1,0 +1,11 @@
+ssl_sync_upload: false
+ssl_sync_download: false
+ssl_sync_domains: []
+ssl_sync_dir: /etc/ssl/
+ssl_sync_s3_dir: /ssl
+ssl_sync_s3_credentials:
+  bucket: ''
+  region: 'us-west-1'
+  s3_url: 'https://s3.amazonaws.com'
+  aws_access_key: ''
+  aws_secret_key: ''

@@ -1,0 +1,48 @@
+---
+- name: download ssl keys from S3
+  aws_s3:
+    mode: get
+    object: '{{ ssl_sync_s3_dir }}/{{ item }}.key'
+    dest: '{{ ssl_sync_dir }}/{{ item }}.key'
+    s3_url: '{{ ssl_sync_s3_credentials.s3_url }}'
+    region: '{{ ssl_sync_s3_credentials.region }}'
+    bucket: '{{ ssl_sync_s3_credentials.bucket }}'
+    aws_access_key: '{{ ssl_sync_s3_credentials.aws_access_key }}'
+    aws_secret_key: '{{ ssl_sync_s3_credentials.aws_secret_key }}'
+  with_items: '{{ ssl_sync_domains }}'
+
+- name: download ssl certificate from S3
+  aws_s3:
+    mode: get
+    object: '{{ ssl_sync_s3_dir }}/{{ item }}.crt'
+    dest: '{{ ssl_sync_dir }}/{{ item }}.crt'
+    s3_url: '{{ ssl_sync_s3_credentials.s3_url }}'
+    region: '{{ ssl_sync_s3_credentials.region }}'
+    bucket: '{{ ssl_sync_s3_credentials.bucket }}'
+    aws_access_key: '{{ ssl_sync_s3_credentials.aws_access_key }}'
+    aws_secret_key: '{{ ssl_sync_s3_credentials.aws_secret_key }}'
+  with_items: '{{ ssl_sync_domains }}'
+
+- name: download ssl certificate fullchains from S3
+  aws_s3:
+    mode: get
+    object: '{{ ssl_sync_s3_dir }}/{{ item }}-fullchain.crt'
+    dest: '{{ ssl_sync_dir }}/{{ item }}-fullchain.crt'
+    s3_url: '{{ ssl_sync_s3_credentials.s3_url }}'
+    region: '{{ ssl_sync_s3_credentials.region }}'
+    bucket: '{{ ssl_sync_s3_credentials.bucket }}'
+    aws_access_key: '{{ ssl_sync_s3_credentials.aws_access_key }}'
+    aws_secret_key: '{{ ssl_sync_s3_credentials.aws_secret_key }}'
+  with_items: '{{ ssl_sync_domains }}'
+
+- name: download ssl certificate bundles from S3
+  aws_s3:
+    mode: get
+    object: '{{ ssl_sync_s3_dir }}/{{ item }}-bundle.pem'
+    dest: '{{ ssl_sync_dir }}/{{ item }}-bundle.pem'
+    s3_url: '{{ ssl_sync_s3_credentials.s3_url }}'
+    region: '{{ ssl_sync_s3_credentials.region }}'
+    bucket: '{{ ssl_sync_s3_credentials.bucket }}'
+    aws_access_key: '{{ ssl_sync_s3_credentials.aws_access_key }}'
+    aws_secret_key: '{{ ssl_sync_s3_credentials.aws_secret_key }}'
+  with_items: '{{ ssl_sync_domains }}'

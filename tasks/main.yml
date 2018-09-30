@@ -1,0 +1,6 @@
+---
+- include: upload.yml
+  when: ssl_sync_upload
+
+- include: download.yml
+  when: ssl_sync_download
