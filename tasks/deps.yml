@@ -1,5 +1,5 @@
 - name: install ansible dependencies
-  apt: name={{ item }}
-  with_items:
-    - python-boto3
-    - python-botocore
+  apt:
+    name:
+      - python-boto3
+      - python-botocore
