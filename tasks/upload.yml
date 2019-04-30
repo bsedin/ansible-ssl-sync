@@ -11,7 +11,7 @@
     aws_access_key: '{{ ssl_sync_s3_credentials.aws_access_key }}'
     aws_secret_key: '{{ ssl_sync_s3_credentials.aws_secret_key }}'
   with_items: '{{ ssl_sync_domains }}'
-  when: ssl_sync_upload_keys | default(True)
+  when: ssl_sync_upload_keys | bool | default(True)
 
 - name: upload certificates to S3
   aws_s3:
@@ -25,7 +25,7 @@
     aws_access_key: '{{ ssl_sync_s3_credentials.aws_access_key }}'
     aws_secret_key: '{{ ssl_sync_s3_credentials.aws_secret_key }}'
   with_items: '{{ ssl_sync_domains }}'
-  when: ssl_sync_upload_certificates | default(True)
+  when: ssl_sync_upload_certificates | bool | default(True)
 
 - name: upload certificate fullchains to S3
   aws_s3:
@@ -39,7 +39,7 @@
     aws_access_key: '{{ ssl_sync_s3_credentials.aws_access_key }}'
     aws_secret_key: '{{ ssl_sync_s3_credentials.aws_secret_key }}'
   with_items: '{{ ssl_sync_domains }}'
-  when: ssl_sync_upload_certificate_fullchains | default(True)
+  when: ssl_sync_upload_certificate_fullchains | bool | default(True)
 
 - name: upload certificates bundles to S3
   aws_s3:
@@ -53,4 +53,4 @@
     aws_access_key: '{{ ssl_sync_s3_credentials.aws_access_key }}'
     aws_secret_key: '{{ ssl_sync_s3_credentials.aws_secret_key }}'
   with_items: '{{ ssl_sync_domains }}'
-  when: ssl_sync_upload_certificate_bundles | default(True)
+  when: ssl_sync_upload_certificate_bundles | bool | default(True)

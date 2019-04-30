@@ -10,7 +10,7 @@
     aws_access_key: '{{ ssl_sync_s3_credentials.aws_access_key }}'
     aws_secret_key: '{{ ssl_sync_s3_credentials.aws_secret_key }}'
   with_items: '{{ ssl_sync_domains }}'
-  when: ssl_sync_download_keys | default(True)
+  when: ssl_sync_download_keys | bool | default(True)
 
 - name: download ssl certificate from S3
   aws_s3:
@@ -23,7 +23,7 @@
     aws_access_key: '{{ ssl_sync_s3_credentials.aws_access_key }}'
     aws_secret_key: '{{ ssl_sync_s3_credentials.aws_secret_key }}'
   with_items: '{{ ssl_sync_domains }}'
-  when: ssl_sync_download_certificates | default(True)
+  when: ssl_sync_download_certificates | bool | default(True)
 
 - name: download ssl certificate fullchains from S3
   aws_s3:
@@ -36,7 +36,7 @@
     aws_access_key: '{{ ssl_sync_s3_credentials.aws_access_key }}'
     aws_secret_key: '{{ ssl_sync_s3_credentials.aws_secret_key }}'
   with_items: '{{ ssl_sync_domains }}'
-  when: ssl_sync_download_certificate_fullchains | default(True)
+  when: ssl_sync_download_certificate_fullchains | bool | default(True)
 
 - name: download ssl certificate bundles from S3
   aws_s3:
@@ -49,4 +49,4 @@
     aws_access_key: '{{ ssl_sync_s3_credentials.aws_access_key }}'
     aws_secret_key: '{{ ssl_sync_s3_credentials.aws_secret_key }}'
   with_items: '{{ ssl_sync_domains }}'
-  when: ssl_sync_download_certificate_bundles | default(True)
+  when: ssl_sync_download_certificate_bundles | bool | default(True)
