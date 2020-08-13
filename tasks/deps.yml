@@ -1,5 +1,5 @@
 - name: install ansible dependencies
   apt:
     name:
-      - python-boto3
-      - python-botocore
+      - python3-boto3
+      - python3-botocore
