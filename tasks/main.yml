@@ -1,8 +1,8 @@
 ---
-- include: deps.yml
+- import_tasks: deps.yml
 
-- include: upload.yml
+- import_tasks: upload.yml
   when: ssl_sync_upload | bool
 
-- include: download.yml
+- import_tasks: download.yml
   when: ssl_sync_download | bool
