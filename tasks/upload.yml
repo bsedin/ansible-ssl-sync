@@ -1,56 +1,56 @@
 ---
 - name: upload private keys to S3
-  aws_s3:
+  amazon.aws.s3_object:
     mode: put
     object: /ssl/{{ item }}.key
     src: '{{ ssl_sync_dir }}/{{ item }}.key'
     overwrite: different
-    s3_url: '{{ ssl_sync_s3_credentials.s3_url }}'
+    endpoint_url: '{{ ssl_sync_s3_credentials.s3_url }}'
     region: '{{ ssl_sync_s3_credentials.region }}'
     bucket: '{{ ssl_sync_s3_credentials.bucket }}'
-    aws_access_key: '{{ ssl_sync_s3_credentials.aws_access_key }}'
-    aws_secret_key: '{{ ssl_sync_s3_credentials.aws_secret_key }}'
+    access_key: '{{ ssl_sync_s3_credentials.aws_access_key }}'
+    secret_key: '{{ ssl_sync_s3_credentials.aws_secret_key }}'
   with_items: '{{ ssl_sync_domains }}'
   when: ssl_sync_upload_keys | default(True) | bool
 
 - name: upload certificates to S3
-  aws_s3:
+  amazon.aws.s3_object:
     mode: put
     object: /ssl/{{ item }}.crt
     src: '{{ ssl_sync_dir }}/{{ item }}.crt'
     overwrite: different
-    s3_url: '{{ ssl_sync_s3_credentials.s3_url }}'
+    endpoint_url: '{{ ssl_sync_s3_credentials.s3_url }}'
     region: '{{ ssl_sync_s3_credentials.region }}'
     bucket: '{{ ssl_sync_s3_credentials.bucket }}'
-    aws_access_key: '{{ ssl_sync_s3_credentials.aws_access_key }}'
-    aws_secret_key: '{{ ssl_sync_s3_credentials.aws_secret_key }}'
+    access_key: '{{ ssl_sync_s3_credentials.aws_access_key }}'
+    secret_key: '{{ ssl_sync_s3_credentials.aws_secret_key }}'
   with_items: '{{ ssl_sync_domains }}'
   when: ssl_sync_upload_certificates | default(True) | bool
 
 - name: upload certificate fullchains to S3
-  aws_s3:
+  amazon.aws.s3_object:
     mode: put
     object: /ssl/{{ item }}-fullchain.crt
     src: '{{ ssl_sync_dir }}/{{ item }}-fullchain.crt'
     overwrite: different
-    s3_url: '{{ ssl_sync_s3_credentials.s3_url }}'
+    endpoint_url: '{{ ssl_sync_s3_credentials.s3_url }}'
     region: '{{ ssl_sync_s3_credentials.region }}'
     bucket: '{{ ssl_sync_s3_credentials.bucket }}'
-    aws_access_key: '{{ ssl_sync_s3_credentials.aws_access_key }}'
-    aws_secret_key: '{{ ssl_sync_s3_credentials.aws_secret_key }}'
+    access_key: '{{ ssl_sync_s3_credentials.aws_access_key }}'
+    secret_key: '{{ ssl_sync_s3_credentials.aws_secret_key }}'
   with_items: '{{ ssl_sync_domains }}'
   when: ssl_sync_upload_certificate_fullchains | default(True) | bool
 
 - name: upload certificates bundles to S3
-  aws_s3:
+  amazon.aws.s3_object:
     mode: put
     object: /ssl/{{ item }}-bundle.pem
     src: '{{ ssl_sync_dir }}/{{ item }}-bundle.pem'
     overwrite: different
-    s3_url: '{{ ssl_sync_s3_credentials.s3_url }}'
+    endpoint_url: '{{ ssl_sync_s3_credentials.s3_url }}'
     region: '{{ ssl_sync_s3_credentials.region }}'
     bucket: '{{ ssl_sync_s3_credentials.bucket }}'
-    aws_access_key: '{{ ssl_sync_s3_credentials.aws_access_key }}'
-    aws_secret_key: '{{ ssl_sync_s3_credentials.aws_secret_key }}'
+    access_key: '{{ ssl_sync_s3_credentials.aws_access_key }}'
+    secret_key: '{{ ssl_sync_s3_credentials.aws_secret_key }}'
   with_items: '{{ ssl_sync_domains }}'
   when: ssl_sync_upload_certificate_bundles | default(True) | bool

@@ -1,6 +1,7 @@
-- name: install ansible dependencies
-  pip:
+---
+- name: install python dependencies
+  apt:
     name:
-      - botocore
-      - boto3
-    state: latest
+      - python3-botocore
+      - python3-boto3
+    state: present
