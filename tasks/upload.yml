@@ -2,7 +2,7 @@
 - name: upload private keys to S3
   amazon.aws.s3_object:
     mode: put
-    object: /ssl/{{ item }}.key
+    object: '{{ ssl_sync_s3_dir }}/{{ item }}.key'
     src: '{{ ssl_sync_dir }}/{{ item }}.key'
     overwrite: different
     endpoint_url: '{{ ssl_sync_s3_credentials.s3_url }}'
@@ -16,7 +16,7 @@
 - name: upload certificates to S3
   amazon.aws.s3_object:
     mode: put
-    object: /ssl/{{ item }}.crt
+    object: '{{ ssl_sync_s3_dir }}/{{ item }}.crt'
     src: '{{ ssl_sync_dir }}/{{ item }}.crt'
     overwrite: different
     endpoint_url: '{{ ssl_sync_s3_credentials.s3_url }}'
@@ -30,7 +30,7 @@
 - name: upload certificate fullchains to S3
   amazon.aws.s3_object:
     mode: put
-    object: /ssl/{{ item }}-fullchain.crt
+    object: '{{ ssl_sync_s3_dir }}/{{ item }}-fullchain.crt'
     src: '{{ ssl_sync_dir }}/{{ item }}-fullchain.crt'
     overwrite: different
     endpoint_url: '{{ ssl_sync_s3_credentials.s3_url }}'
@@ -44,7 +44,7 @@
 - name: upload certificates bundles to S3
   amazon.aws.s3_object:
     mode: put
-    object: /ssl/{{ item }}-bundle.pem
+    object: '{{ ssl_sync_s3_dir }}/{{ item }}-bundle.pem'
     src: '{{ ssl_sync_dir }}/{{ item }}-bundle.pem'
     overwrite: different
     endpoint_url: '{{ ssl_sync_s3_credentials.s3_url }}'

@@ -2,7 +2,7 @@ ssl_sync_upload: false
 ssl_sync_download: false
 ssl_sync_domains: []
 ssl_sync_dir: /etc/ssl/
-ssl_sync_s3_dir: /ssl
+ssl_sync_s3_dir: ssl
 ssl_sync_s3_credentials:
   bucket: ''
   region: 'us-west-1'
